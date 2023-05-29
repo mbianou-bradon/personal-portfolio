@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
-import Testimonial from "../model/testimonialModel";
+const mongoose = require("mongoose");
+const Testimonial = require("../model/testimonialModel");
 
 // Funtion to get all Testimonials from the database
-export async function getAllTestimonials(req, res, next){
+async function getAllTestimonials(req, res, next){
 
     const testimonials = await Testimonial.find({}).sort({ createdAt: -1 })
 
@@ -12,7 +12,7 @@ export async function getAllTestimonials(req, res, next){
 }
 
 // Function to create a Document to the Database (Add document)
-export async function createProject(req, res, next){
+async function createTestimonial(req, res, next){
     
     const projectData = req.body;
 
@@ -27,7 +27,7 @@ export async function createProject(req, res, next){
 }
 
 // Function to get One Testimonial from the Database
-export async function getOneTestimonial(req, res, next){
+async function getOneTestimonial(req, res, next){
 
     const { id } = req.params;
 
@@ -55,7 +55,7 @@ export async function getOneTestimonial(req, res, next){
 }
 
 // Function to update a Testimonial 
-export async function updateTestimonial(req, res, next){
+async function updateTestimonial(req, res, next){
 
     const { id } = req.params;
 
@@ -87,7 +87,7 @@ export async function updateTestimonial(req, res, next){
 }
 
 // Function to delete a Testimonial from the Database
-export async function deleteTestimonial(req, res, next){
+async function deleteTestimonial(req, res, next){
     const { id } = req.params;
 
     if(!mongoose.Types.ObjectId.isValid(id)){
@@ -115,3 +115,5 @@ export async function deleteTestimonial(req, res, next){
         })
     )
 }
+
+module.exports = { createTestimonial, getAllTestimonials, getOneTestimonial, updateTestimonial, deleteTestimonial}

@@ -1,8 +1,8 @@
-import Express from "express";
-import  {createProject, deleteProject, getAllProjects, getOneProject, updateProject } from "../controllers/projectController";
+const express = require("express");
+const  {createProject, deleteProject, getAllProjects, getOneProject, updateProject } = require("../controllers/projectController");
 
 
-const router = Express.Router();
+const router = express.Router();
 
 // Get all Projects
 router.get("/",getAllProjects);
@@ -21,5 +21,5 @@ router.patch("/:id", updateProject)
 router.delete("/:id", deleteProject)
 
 
-export default router;
+module.exports = router;
 

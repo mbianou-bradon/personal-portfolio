@@ -1,12 +1,37 @@
-import Express from "express";
-import router from "./routes/projectRoutes";
+const express = require("express");
+const mongoose = require("mongoose");
+const projectRouter = require("./routes/projectRoutes");
+const serviceRouter = require("./routes/serviceRoutes");
+const experienceRouter = require("./routes/experienceRoutes");
+const testimonialRouter = require("./routes/testimonialRoutes");
 
-const app = Express();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({path: "./vars/.env"})
+}
 
+const app = express();
 
-const PORT = 4000;
-app.listen(PORT, function(){
-    console.log("Listening on port",PORT);
+const PORT = process.env.PORT;
+const DBURI = process.env.MONGODB_URI;
+
+// Connecting to Database
+mongoose.connect(DBURI, { useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
+    app.listen(PORT, function(){
+        console.log("Listening on port",PORT);
+    })
+
+    console.log("Successfully Connected to Database")
 })
 
-app.use("/project", router);
+// Middlewares
+app.use(express.json());
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+})
+
+// Defining Routes
+app.use("/api/projects", projectRouter);
+app.use("/api/services", serviceRouter);
+app.use("/api/experiences", experienceRouter);
+app.use("/api/testimonials", testimonialRouter);
