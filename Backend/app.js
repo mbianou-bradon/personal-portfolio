@@ -1,5 +1,8 @@
 import Express from "express";
-import router from "./routes/projectRoutes";
+import projectRouter from "./routes/projectRoutes";
+import serviceRouter from "./routes/serviceRoutes";
+import experienceRouter from "./routes/experienceRoutes";
+import testimonialRouter from "./routes/testimonialRoutes";
 
 const app = Express();
 
@@ -9,4 +12,7 @@ app.listen(PORT, function(){
     console.log("Listening on port",PORT);
 })
 
-app.use("/project", router);
+app.use("/project", projectRouter);
+app.use("/services", serviceRouter);
+app.use("experiences", experienceRouter);
+app.use("/testimonials", testimonialRouter);

@@ -12,7 +12,7 @@ export async function getAllTestimonials(req, res, next){
 }
 
 // Function to create a Document to the Database (Add document)
-export async function createProject(req, res, next){
+export async function createTestimonial(req, res, next){
     
     const projectData = req.body;
 
