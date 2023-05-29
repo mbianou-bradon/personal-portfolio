@@ -7,7 +7,10 @@ async function getAllProjects(req, res, next){
     const projects = await Project.find({}).sort({ createdAt: -1 })
 
     return next(
-        res.status(200).json(projects)
+        res.status(200).json({
+            status : "OK",
+            data : projects
+        })
     )
 }
 

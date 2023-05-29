@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 const app = express();
 
 const PORT = process.env.PORT;
-const DBURI = process.env.;
+const DBURI = process.env.MONGODB_URI;
 
 // Connecting to Database
 mongoose.connect(DBURI, { useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 })
 
 // Defining Routes
-app.use("/project", projectRouter);
-app.use("/services", serviceRouter);
-app.use("experiences", experienceRouter);
-app.use("/testimonials", testimonialRouter);
+app.use("/api/projects", projectRouter);
+app.use("/api/services", serviceRouter);
+app.use("/api/experiences", experienceRouter);
+app.use("/api/testimonials", testimonialRouter);
