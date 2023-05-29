@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
-import Project from "../model/projectModel"
+const mongoose = require("mongoose");
+const Project = require("../model/projectModel");
 
 // Funtion to get all Projects from the database
-export async function getAllProjects(req, res, next){
+async function getAllProjects(req, res, next){
 
     const projects = await Project.find({}).sort({ createdAt: -1 })
 
@@ -12,7 +12,7 @@ export async function getAllProjects(req, res, next){
 }
 
 // Function to create a Document to the Database (Add document)
-export async function createProject(req, res, next){
+async function createProject(req, res, next){
     
     const projectData = req.body;
 
@@ -27,7 +27,7 @@ export async function createProject(req, res, next){
 }
 
 // Function to get One Project from the Database
-export async function getOneProject(req, res, next){
+async function getOneProject(req, res, next){
 
     const { id } = req.params;
 
@@ -55,7 +55,7 @@ export async function getOneProject(req, res, next){
 }
 
 // Function to update a Project 
-export async function updateProject(req, res, next){
+async function updateProject(req, res, next){
 
     const { id } = req.params;
 
@@ -87,7 +87,7 @@ export async function updateProject(req, res, next){
 }
 
 // Function to delete a Project from the Database
-export async function deleteProject(req, res, next){
+async function deleteProject(req, res, next){
     const { id } = req.params;
 
     if(!mongoose.Types.ObjectId.isValid(id)){
@@ -117,3 +117,4 @@ export async function deleteProject(req, res, next){
 }
 
 
+module.exports = { createProject, getAllProjects, getOneProject, updateProject, deleteProject}

@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
-import Service from "../model/serviceModel"
+const mongoose = require("mongoose");
+const Service = require("../model/serviceModel");
 
 // Funtion to get all Services from the database
-export async function getAllServices(req, res, next){
+async function getAllServices(req, res, next){
 
     const services = await Service.find({}).sort({ createdAt: -1 })
 
@@ -12,7 +12,7 @@ export async function getAllServices(req, res, next){
 }
 
 // Function to create a Document to the Database (Add document)
-export async function createService(req, res, next){
+async function createService(req, res, next){
     
     const serviceData = req.body;
 
@@ -27,7 +27,7 @@ export async function createService(req, res, next){
 }
 
 // Function to get One Service from the Database
-export async function getOneService(req, res, next){
+async function getOneService(req, res, next){
 
     const { id } = req.params;
 
@@ -55,7 +55,7 @@ export async function getOneService(req, res, next){
 }
 
 // Function to update a Service 
-export async function updateService(req, res, next){
+async function updateService(req, res, next){
 
     const { id } = req.params;
 
@@ -87,7 +87,7 @@ export async function updateService(req, res, next){
 }
 
 // Function to delete a Service from the Database
-export async function deleteService(req, res, next){
+async function deleteService(req, res, next){
     const { id } = req.params;
 
     if(!mongoose.Types.ObjectId.isValid(id)){
@@ -115,3 +115,5 @@ export async function deleteService(req, res, next){
         })
     )
 }
+
+module.exports = { createService, getAllServices, getOneService, updateService, deleteService}

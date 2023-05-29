@@ -1,7 +1,7 @@
-import Express from "express"
-import { createExperience, deleteExperience, getAllExperiences, getOneExperience, updateExperience } from "../controllers/experienceController";
+const express = require("express");
+const { createExperience, deleteExperience, getAllExperiences, getOneExperience, updateExperience } = require("../controllers/experienceController");
 
-const router = Express.Router();
+const router = express.Router();
 
 // Get all Experience
 router.get("/",getAllExperiences);
@@ -20,4 +20,4 @@ router.patch("/:id", updateExperience);
 router.delete("/:id", deleteExperience);
 
 
-export default router;
+module.exports = router;

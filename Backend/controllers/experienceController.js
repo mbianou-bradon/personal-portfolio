@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
-import Experience from "../model/experienceModel";
+const mongoose = require("mongoose");
+const Experience = require("../model/experienceModel");
 
 // Funtion to get all Projects from the database
-export async function getAllExperiences(req, res, next){
+async function getAllExperiences(req, res, next){
 
     const experiences = await Experience.find({}).sort({ createdAt: -1 })
 
@@ -12,7 +12,7 @@ export async function getAllExperiences(req, res, next){
 }
 
 // Function to create a Document to the Database (Add document)
-export async function createExperience(req, res, next){
+async function createExperience(req, res, next){
     
     const experienceData = req.body;
 
@@ -27,7 +27,7 @@ export async function createExperience(req, res, next){
 }
 
 // Function to get One Experience from the Database
-export async function getOneExperience(req, res, next){
+async function getOneExperience(req, res, next){
 
     const { id } = req.params;
 
@@ -55,7 +55,7 @@ export async function getOneExperience(req, res, next){
 }
 
 // Function to update a Experience 
-export async function updateExperience(req, res, next){
+async function updateExperience(req, res, next){
 
     const { id } = req.params;
 
@@ -87,7 +87,7 @@ export async function updateExperience(req, res, next){
 }
 
 // Function to delete a Experience from the Database
-export async function deleteExperience(req, res, next){
+async function deleteExperience(req, res, next){
     const { id } = req.params;
 
     if(!mongoose.Types.ObjectId.isValid(id)){
@@ -115,3 +115,5 @@ export async function deleteExperience(req, res, next){
         })
     )
 }
+
+module.exports = {getAllExperiences, getOneExperience, createExperience, updateExperience, deleteExperience}

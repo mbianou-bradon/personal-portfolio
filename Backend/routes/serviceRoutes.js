@@ -1,8 +1,8 @@
-import Express from "express";
-import { createService, deleteService, getAllServices, getOneService, updateService } from "../controllers/serviceController";
+const express = require("express");
+const { createService, deleteService, getAllServices, getOneService, updateService } = require("../controllers/serviceController");
 
 
-const router = Express.Router();
+const router = express.Router();
 
 // Get all Services
 router.get("/",getAllServices);
@@ -20,4 +20,4 @@ router.patch("/:id", updateService);
 router.delete("/:id", deleteService);
 
 
-export default router;
+module.exports = router;

@@ -1,9 +1,9 @@
-import Express from "express";
-import { createTestimonial, deleteTestimonial, getAllTestimonials, getOneTestimonial, updateTestimonial } from "../controllers/testimonialController";
+const express = require("express");
+const { createTestimonial, deleteTestimonial, getAllTestimonials, getOneTestimonial, updateTestimonial } = require("../controllers/testimonialController");
 
 
 
-const router = Express.Router();
+const router = express.Router();
 
 // Get all Testimonials
 router.get("/",getAllTestimonials);
@@ -22,4 +22,4 @@ router.patch("/:id", updateTestimonial);
 router.delete("/:id", deleteTestimonial);
 
 
-export default router;
+module.exports = router;
