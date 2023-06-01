@@ -18,7 +18,7 @@ const Experience = () => {
       .catch((error)=>{
         console.log("Fetching Experience data error:", error.message);
       })
-    },[])
+    },[experienceData])
 
   
   return (
