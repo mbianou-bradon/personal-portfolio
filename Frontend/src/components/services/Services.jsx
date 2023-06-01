@@ -1,13 +1,13 @@
 import React from 'react'
 import "./services.css";
 import { BiCheck } from "react-icons/bi";
-import fetchData from '../../api/fetchFunction';
+import client from '../../api/axios';
 
 const Services = () => {
   const [serviceData, setServiceData] = React.useState([]);
 
   React.useEffect(()=>{
-    fetchData("/api/services")
+    client.get("/api/services")
     .then((response)=>{
       const temp = response.data
       console.log("services data:",temp)

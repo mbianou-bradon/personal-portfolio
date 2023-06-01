@@ -4,23 +4,23 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import "./testimonials.css";
-import fetchData from "../../api/fetchFunction";
+import client from "../../api/axios";
 
 const Testimonials = () => {
 
   const [data, setData] = React.useState([]);
 
   React.useEffect(()=>{
-    fetchData("/api/testimonials")
+    client.get("/api/testimonials")
     .then((response)=>{
       const temp = response.data;
       setData(temp);
     })
     .catch((error)=>{
-      console.log("Error fetching data:", error.message);
+      console.log("Error fetching Testimonial Data:", error.message);
     })
     
-  },[])
+  },[data])
 
 
 

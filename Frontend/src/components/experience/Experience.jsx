@@ -1,13 +1,13 @@
 import React from 'react'
 import "./experience.css";
 import { BsFillPatchCheckFill } from "react-icons/bs";
-import fetchData from '../../api/fetchFunction';
+import client from '../../api/axios';
 
 const Experience = () => {
     const [experienceData, setExperienceData] = React.useState([])
 
     React.useEffect(()=>{
-      fetchData("/api/experiences")
+      client.get("/api/experiences")
       .then((response)=>{
         const temp = response.data
 
