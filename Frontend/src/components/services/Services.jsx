@@ -16,7 +16,7 @@ const Services = () => {
     .catch((error)=>{
       console.log("Fetching services data error:", error.message)
     })
-  },[])
+  },[serviceData])
 
 
   return (
