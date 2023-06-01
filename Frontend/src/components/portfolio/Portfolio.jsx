@@ -1,13 +1,13 @@
 import React from "react";
 import "./portfolio.css";
-import fetchData from "../../api/fetchFunction";
+import client from "../../api/axios";
 
 
 const Portfolio = () => {
   const [portfolioData, setPortfolioData] = React.useState([])
 
   React.useEffect(()=>{
-    fetchData("/api/projects")
+    client.get("/api/projects")
     .then((response)=>{
       const temp = response.data
 
