@@ -39,7 +39,7 @@ async function getOneService(req, res, next){
         )
     }
 
-    const service = await Service.findById({ _id : id })
+    const service = await Service.findById(id)
 
     if(!service){
         return next(
@@ -59,8 +59,6 @@ async function updateService(req, res, next){
 
     const { id } = req.params;
 
-    const updates = req.body
-
     if(!mongoose.Types.ObjectId.isValid(id)){
         return next(
             res.status(404).json({
@@ -70,7 +68,7 @@ async function updateService(req, res, next){
     }
 
     const service = await Service.findByIdAndUpdate({_id: id}, {
-        ...req.body, updates
+        ...req.body
     })
 
     if(!service){
@@ -98,7 +96,7 @@ async function deleteService(req, res, next){
         )
     }
 
-    const service = await Service.findByIdAndDelete({ _id : id })
+    const service = await Service.findByIdAndDelete(id)
 
     if(!service){
         return next(

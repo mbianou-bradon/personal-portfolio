@@ -42,7 +42,7 @@ async function getOneProject(req, res, next){
         )
     }
 
-    const project = await Project.findById({ _id : id })
+    const project = await Project.findById(id)
 
     if(!project){
         return next(
@@ -73,7 +73,7 @@ async function updateProject(req, res, next){
     }
 
     const project = await Project.findByIdAndUpdate({_id: id}, {
-        ...req.body, updates
+        ...req.body
     })
 
     if(!project){
@@ -101,7 +101,7 @@ async function deleteProject(req, res, next){
         )
     }
 
-    const project = await Project.findByIdAndDelete({ _id : id })
+    const project = await Project.findByIdAndDelete(id)
 
     if(!project){
         return next(

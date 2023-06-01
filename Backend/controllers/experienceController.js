@@ -39,7 +39,7 @@ async function getOneExperience(req, res, next){
         )
     }
 
-    const experience = await Experience.findById({ _id : id })
+    const experience = await Experience.findById( id)
 
     if(!experience){
         return next(
@@ -98,7 +98,7 @@ async function deleteExperience(req, res, next){
         )
     }
 
-    const experience = await Experience.findByIdAndDelete({ _id : id })
+    const experience = await Experience.findByIdAndDelete( id)
 
     if(!experience){
         return next(
