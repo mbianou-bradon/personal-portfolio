@@ -1,8 +1,26 @@
 import React from 'react'
 import "./experience.css";
 import { BsFillPatchCheckFill } from "react-icons/bs";
+import fetchData from '../../api/fetchFunction';
 
 const Experience = () => {
+    const [experienceData, setExperienceData] = React.useState([])
+
+    React.useEffect(()=>{
+      fetchData("/api/experiences")
+      .then((response)=>{
+        const temp = response.data
+
+        setExperienceData(temp);
+
+        console.log(experienceData);
+      })
+      .catch((error)=>{
+        console.log("Fetching Experience data error:", error.message);
+      })
+    },[])
+
+  
   return (
     <section id="experience">
       <h5>Skills I have</h5>

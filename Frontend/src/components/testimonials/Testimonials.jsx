@@ -1,17 +1,30 @@
 import React from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-
 import { Pagination } from "swiper";
-
-import { data } from "./testimonialData";
 import "./testimonials.css";
+import fetchData from "../../api/fetchFunction";
 
 const Testimonials = () => {
+
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(()=>{
+    fetchData("/api/testimonials")
+    .then((response)=>{
+      const temp = response.data;
+      setData(temp);
+    })
+    .catch((error)=>{
+      console.log("Error fetching data:", error.message);
+    })
+    
+  },[])
+
+
+
+
   return (
     <section id="testimonials">
       <h5>Review from clients</h5>
@@ -28,10 +41,10 @@ const Testimonials = () => {
         {data.map((item) => (
           <SwiperSlide className="testimonial">
             <div className="client__avatar">
-              <img src={item.avatar} alt="AVATAR" />
+              <img src={item.userProfile} alt="AVATAR" />
             </div>
-            <h5 className="client__name">{item.name}</h5>
-            <small className="client__review">{item.review}</small>
+            <h5 className="client__name">{item.userName}</h5>
+            <small className="client__review">{item.testimomialBody}</small>
           </SwiperSlide>
         ))}
       </Swiper>

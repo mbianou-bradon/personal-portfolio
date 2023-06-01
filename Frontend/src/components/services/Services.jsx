@@ -1,8 +1,24 @@
 import React from 'react'
 import "./services.css";
 import { BiCheck } from "react-icons/bi";
+import fetchData from '../../api/fetchFunction';
 
 const Services = () => {
+  const [serviceData, setServiceData] = React.useState([]);
+
+  React.useEffect(()=>{
+    fetchData("/api/services")
+    .then((response)=>{
+      const temp = response.data
+      console.log("services data:",temp)
+      setServiceData(temp)
+    })
+    .catch((error)=>{
+      console.log("Fetching services data error:", error.message)
+    })
+  },[])
+
+
   return (
         <section id="services">
       <h5>What I can offer</h5>
