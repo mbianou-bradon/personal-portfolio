@@ -4,7 +4,7 @@ const projectRouter = require("./routes/projectRoutes");
 const serviceRouter = require("./routes/serviceRoutes");
 const experienceRouter = require("./routes/experienceRoutes");
 const testimonialRouter = require("./routes/testimonialRoutes");
-
+const cors = require("cors");
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config({path: "./vars/.env"})
 }
@@ -29,6 +29,10 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 })
+app.use(cors({
+    "origin": ["http://127.0.0.1:3000"],
+    "methods": ["GET","POST","PATCH","DELETE"]
+}));
 
 // Defining Routes
 app.use("/api/projects", projectRouter);
