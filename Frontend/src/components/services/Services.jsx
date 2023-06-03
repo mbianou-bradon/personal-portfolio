@@ -5,6 +5,7 @@ import client from '../../api/axios';
 
 const Services = () => {
   const [serviceData, setServiceData] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(()=>{
     client.get("/api/services")
@@ -16,7 +17,7 @@ const Services = () => {
     .catch((error)=>{
       console.log("Fetching services data error:", error.message)
     })
-  },[serviceData])
+  },[])
 
 
   return (

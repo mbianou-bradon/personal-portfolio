@@ -5,6 +5,7 @@ import client from '../../api/axios';
 
 const Experience = () => {
     const [experienceData, setExperienceData] = React.useState([])
+    const [isLoading, setIsLoading] = React.useState(false);
 
     React.useEffect(()=>{
       client.get("/api/experiences")
@@ -18,7 +19,7 @@ const Experience = () => {
       .catch((error)=>{
         console.log("Fetching Experience data error:", error.message);
       })
-    },[experienceData])
+    },[])
 
   
   return (

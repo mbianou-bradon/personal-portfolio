@@ -9,6 +9,7 @@ import client from "../../api/axios";
 const Testimonials = () => {
 
   const [data, setData] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(()=>{
     client.get("/api/testimonials")
@@ -20,7 +21,7 @@ const Testimonials = () => {
       console.log("Error fetching Testimonial Data:", error.message);
     })
     
-  },[data])
+  },[])
 
 
 

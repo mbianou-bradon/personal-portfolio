@@ -30,7 +30,7 @@ app.use((req, res, next) => {
   next();
 })
 app.use(cors({
-    "origin": ["http://127.0.0.1:3000", "https://mbianoubradon-personal-portfolio.vercel.app"],
+    "origin": ["http://127.0.0.1:3000", "http://localhost:3000", "https://mbianoubradon-personal-portfolio.vercel.app"],
     "methods": ["GET","POST","PATCH","DELETE"]
 }));
 

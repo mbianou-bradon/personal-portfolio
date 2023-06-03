@@ -1,7 +1,7 @@
 # Student Info
 
-Name: `MBIANOU TOUSSOM COLBERT BRADON`
-Matricule: `FE19A060`
+Name: `MBIANOU TOUSSOM COLBERT BRADON` <br>
+Matricule: `FE19A060` <br>
 Department: `Computer Engineering`
 
 # About the Project
