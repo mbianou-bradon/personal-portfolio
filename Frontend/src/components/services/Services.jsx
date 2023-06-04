@@ -8,14 +8,17 @@ const Services = () => {
   const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(()=>{
+    setIsLoading(true)
     client.get("/api/services")
     .then((response)=>{
       const temp = response.data
       console.log("services data:",temp)
       setServiceData(temp)
+      setIsLoading(false)
     })
     .catch((error)=>{
       console.log("Fetching services data error:", error.message)
+      setIsLoading(false)
     })
   },[])
 

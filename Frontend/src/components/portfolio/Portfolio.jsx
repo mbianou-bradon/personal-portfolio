@@ -1,22 +1,25 @@
 import React from "react";
 import "./portfolio.css";
 import client from "../../api/axios";
-
+import { FadeLoader } from "react-spinners";
 
 const Portfolio = () => {
   const [portfolioData, setPortfolioData] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(()=>{
+    setIsLoading(true);
     client.get("/api/projects")
     .then((response)=>{
       const temp = response.data
-
+      setIsLoading(false)
       setPortfolioData(temp);
       console.log("portfolioData:",portfolioData);
     })
     .catch((error)=>{
       console.log("Fetching Project Error:", error);
+      setIsLoading(false)
+
     })
   },[])
 
@@ -28,6 +31,11 @@ const Portfolio = () => {
 
       <div className="container portfolio__container">
         {
+          isLoading?
+          <div className="">
+            <FadeLoader color="#4db5ff" />
+          </div>
+          :
           portfolioData.length > 0 &&
 
           portfolioData.map((item) => (

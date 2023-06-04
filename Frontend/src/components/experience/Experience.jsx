@@ -8,16 +8,17 @@ const Experience = () => {
     const [isLoading, setIsLoading] = React.useState(false);
 
     React.useEffect(()=>{
+      setIsLoading(true)
       client.get("/api/experiences")
       .then((response)=>{
         const temp = response.data
-
         setExperienceData(temp);
-
         console.log(experienceData);
+        setIsLoading(false)
       })
       .catch((error)=>{
         console.log("Fetching Experience data error:", error.message);
+        setIsLoading(false)
       })
     },[])
 
