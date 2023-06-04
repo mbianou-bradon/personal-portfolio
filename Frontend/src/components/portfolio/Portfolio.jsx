@@ -11,7 +11,7 @@ const Portfolio = () => {
     setIsLoading(true);
     client.get("/api/projects")
     .then((response)=>{
-      const temp = response.data
+      const temp = response.data.data
       setIsLoading(false)
       setPortfolioData(temp);
       console.log("portfolioData:",portfolioData);

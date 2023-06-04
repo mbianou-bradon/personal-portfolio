@@ -2,6 +2,7 @@ import React from 'react'
 import "./experience.css";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import client from '../../api/axios';
+import { FadeLoader } from "react-spinners"
 
 const Experience = () => {
     const [experienceData, setExperienceData] = React.useState([])
@@ -13,7 +14,7 @@ const Experience = () => {
       .then((response)=>{
         const temp = response.data
         setExperienceData(temp);
-        console.log(experienceData);
+        console.log("experienceData:", experienceData);
         setIsLoading(false)
       })
       .catch((error)=>{
@@ -29,86 +30,44 @@ const Experience = () => {
       <h2>My Experience</h2>
 
       <div className="container experience__container">
-        <div className="experience__frontend">
-          <h3>Frontend Development</h3>
-          <div className="experience__content">
-            <article className="experience__details">
-              <BsFillPatchCheckFill className="details__icon" />
-              <div>
-                <h4>HTML</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-            <article className="experience__details">
-              <BsFillPatchCheckFill className="details__icon" />
-              <div>
-                <h4>CSS</h4>
-                <small className="text-light">Intermediate</small>
-              </div>
-            </article>
-            <article className="experience__details">
-              <BsFillPatchCheckFill className="details__icon" />
-              <div>
-                <h4>JavaScript</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-            <article className="experience__details">
-              <BsFillPatchCheckFill className="details__icon" />
-              <div>
-                <h4>Boostrap</h4>
-                <small className="text-light">Intermediate</small>
-              </div>
-            </article>
-            <article className="experience__details">
-              <BsFillPatchCheckFill className="details__icon" />
-              <div>
-                <h4>TailwindCSS</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-            <article className="experience__details">
-              <BsFillPatchCheckFill className="details__icon" />
-              <div>
-                <h4>React</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-            <article className="experience__details">
-              <BsFillPatchCheckFill className="details__icon" />
-              <div>
-                <h4>React Native</h4>
-                <small className="text-light">Experienced</small>
-              </div>
-            </article>
-          </div>
-        </div>
-        <div className="experience__backend">
-          <h3>BackEnd Development</h3>
-          <div className="experience__content">
-            <article className="experience__details">
-              <BsFillPatchCheckFill className="details__icon" />
-              <div>
-                <h4>Node JS</h4>
-                <small className="text-light">Intermediate</small>
-              </div>
-            </article>
-            <article className="experience__details">
-              <BsFillPatchCheckFill className="details__icon" />
-              <div>
-                <h4>Express JS</h4>
-                <small className="text-light">Intermediate</small>
-              </div>
-            </article>
-            <article className="experience__details">
-              <BsFillPatchCheckFill className="details__icon" />
-              <div>
-                <h4>MYSQL</h4>
-                <small className="text-light">Basic</small>
-              </div>
-            </article>
-          </div>
-        </div>
+        {
+          isLoading? 
+          <>
+            <FadeLoader color="#4db5ff" />
+          </>
+
+          :
+          experienceData.length > 0 &&
+          experienceData.map((exps, index)=> {
+
+            return (
+              <div className="experience__frontend" key={index}>
+                <h3>{exps.title}</h3>
+                <div className="experience__content">
+                  {
+                    exps.experiences.map((skill, index)=>{
+                      return (
+                        <article className="experience__details" key={index}>
+                          <BsFillPatchCheckFill className="details__icon" />
+                          <div>
+                            <h4>{skill.title}</h4>
+                            <small className="text-light">{skill.skillLevel}</small>
+                          </div>
+                        </article>
+                      )
+                    })
+                  }
+                  
+                  
+                </div>
+            </div>
+            )
+          })
+            
+                
+
+        }
+        
       </div>
     </section>
 
