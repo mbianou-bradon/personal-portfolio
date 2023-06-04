@@ -2,7 +2,7 @@ import React from 'react'
 import "./services.css";
 import { BiCheck } from "react-icons/bi";
 import client from '../../api/axios';
-import { FadeLoader } from 'react-spinners';
+import Loader from '../loader/Loader';
 
 const Services = () => {
   const [serviceData, setServiceData] = React.useState([]);
@@ -28,39 +28,41 @@ const Services = () => {
         <section id="services">
       <h5>What I can offer</h5>
       <h2>Sevices</h2>
-      <div className="services__container">
-        {
-          isLoading? 
-          <>
-          <FadeLoader color="#4db5ff" />
-          </>
+
+      { 
+      isLoading? 
+          <Loader/>
 
           :
-          serviceData.map((service, index)=> {
-            return (
-              <article className="service" key={index}>
-                <div className="service__head">
-                  <h3>{service.title}</h3>
-                </div>
-                <ul className="service__list">
-                  {
-                    service.description.map((desc, index)=>{
-                      return (
-                        <li key={index}>
-                          <BiCheck className="service__list-icon" />
-                          <p>{desc}</p>
-                        </li>
-                      )
-                    })
-                  }
-                </ul>
-              </article>
-            )
-          })
-          
+          <div className="services__container">
+            {
+            
+              serviceData.map((service, index)=> {
+                return (
+                  <article className="service" key={index}>
+                    <div className="service__head">
+                      <h3>{service.title}</h3>
+                    </div>
+                    <ul className="service__list">
+                      {
+                        service.description.map((desc, index)=>{
+                          return (
+                            <li key={index}>
+                              <BiCheck className="service__list-icon" />
+                              <p>{desc}</p>
+                            </li>
+                          )
+                        })
+                      }
+                    </ul>
+                  </article>
+                )
+              })
+              
+            }
+            
+          </div>
         }
-        
-      </div>
     </section>
 
   )

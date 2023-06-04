@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import "./testimonials.css";
 import client from "../../api/axios";
-import {FadeLoader} from "react-spinners"
+import Loader from "../loader/Loader";
 
 const Testimonials = () => {
 
@@ -37,9 +37,7 @@ const Testimonials = () => {
 
       {
         isLoading?
-        <div className="testimonial">
-          <FadeLoader color="#4db5ff" />
-        </div>
+        <Loader/>
         :
         <Swiper
           pagination={{ dynamicBullets: true }}

@@ -2,7 +2,7 @@ import React from 'react'
 import "./experience.css";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import client from '../../api/axios';
-import { FadeLoader } from "react-spinners"
+import Loader from '../loader/Loader';
 
 const Experience = () => {
     const [experienceData, setExperienceData] = React.useState([])
@@ -28,47 +28,46 @@ const Experience = () => {
     <section id="experience">
       <h5>Skills I have</h5>
       <h2>My Experience</h2>
-
-      <div className="container experience__container">
         {
           isLoading? 
-          <>
-            <FadeLoader color="#4db5ff" />
-          </>
+          <Loader/>
 
           :
-          experienceData.length > 0 &&
-          experienceData.map((exps, index)=> {
+          <div className="container experience__container">
+            {
+              experienceData.length > 0 &&
+              experienceData.map((exps, index)=> {
 
-            return (
-              <div className="experience__frontend" key={index}>
-                <h3>{exps.title}</h3>
-                <div className="experience__content">
-                  {
-                    exps.experiences.map((skill, index)=>{
-                      return (
-                        <article className="experience__details" key={index}>
-                          <BsFillPatchCheckFill className="details__icon" />
-                          <div>
-                            <h4>{skill.title}</h4>
-                            <small className="text-light">{skill.skillLevel}</small>
-                          </div>
-                        </article>
-                      )
-                    })
-                  }
-                  
-                  
+                return (
+                  <div className="experience__frontend" key={index}>
+                    <h3>{exps.title}</h3>
+                    <div className="experience__content">
+                      {
+                        exps.experiences.map((skill, index)=>{
+                          return (
+                            <article className="experience__details" key={index}>
+                              <BsFillPatchCheckFill className="details__icon" />
+                              <div>
+                                <h4>{skill.title}</h4>
+                                <small className="text-light">{skill.skillLevel}</small>
+                              </div>
+                            </article>
+                          )
+                        })
+                      }
+                      
+                      
+                    </div>
                 </div>
-            </div>
-            )
-          })
-            
+                )
+              })
                 
+                    
 
-        }
-        
-      </div>
+            }
+            
+          </div>
+}
     </section>
 
   )
