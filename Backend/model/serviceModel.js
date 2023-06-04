@@ -9,7 +9,7 @@ const serviceSchema = new mongoose.Schema({
     description : {
         type: [String]
     }
-})
+},{timestamps: true})
 
 const Service = mongoose.model("Service", serviceSchema);
 

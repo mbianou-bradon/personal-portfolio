@@ -4,7 +4,7 @@ const Testimonial = require("../model/testimonialModel");
 // Funtion to get all Testimonials from the database
 async function getAllTestimonials(req, res, next){
     try {
-        const testimonials = await Testimonial.find({}).sort({ createdAt: -1 })
+        const testimonials = await Testimonial.find({})
 
         return next(
             res.status(200).json(testimonials)

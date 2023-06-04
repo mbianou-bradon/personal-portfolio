@@ -5,7 +5,7 @@ const Service = require("../model/serviceModel");
 async function getAllServices(req, res, next){
 
     try {
-        const services = await Service.find({}).sort({ createdAt: -1 })
+        const services = await Service.find({})
 
         return next(
             res.status(200).json(services)
@@ -22,7 +22,7 @@ async function getAllServices(req, res, next){
 
 // Function to create a Document to the Database (Add document)
 async function createService(req, res, next){
-    
+   try {
     const serviceData = req.body;
 
     const newService = await Service.create(serviceData);
@@ -33,6 +33,14 @@ async function createService(req, res, next){
             message : "Service Successfully Added!"
         })
     )
+   } catch (error) {
+    return next(
+        res.status(400).json({
+            message : error
+            })
+        )
+   } 
+    
 }
 
 // Function to get One Service from the Database
@@ -59,7 +67,7 @@ async function getOneService(req, res, next){
     }
 
     return next(
-        res.status(200).json(project)
+        res.status(200).json(service)
     )
 }
 
