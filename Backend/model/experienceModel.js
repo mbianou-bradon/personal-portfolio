@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 
 const experienceSchema = new mongoose.Schema({
-    
     title : {
         type: String,
-        required : [true, "Category title required"],
-        unique: [true, "Category title must be unique"]
+        required : [true, "Main Experience title required"],
+        unique: [true, "Main Experience title must be unique"]
     },
     experiences : [
         {

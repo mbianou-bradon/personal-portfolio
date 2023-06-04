@@ -4,11 +4,20 @@ const Experience = require("../model/experienceModel");
 // Funtion to get all Projects from the database
 async function getAllExperiences(req, res, next){
 
-    const experiences = await Experience.find({}).sort({ createdAt: -1 })
+    try {
+        const experiences = await Experience.find({}).sort({ createdAt: -1 })
 
-    return next(
-        res.status(200).json(experiences)
-    )
+        return next(
+            res.status(200).json(experiences)
+        )
+    } catch (error) {
+        return next(
+            res.status(400).json({
+                message : error
+            })
+        )
+    }
+    
 }
 
 // Function to create a Document to the Database (Add document)
@@ -16,14 +25,24 @@ async function createExperience(req, res, next){
     
     const experienceData = req.body;
 
-    const newExperience = await Project.create(experienceData);
+    try {
+        const newExperience = await Experience.create(experienceData);
 
-    return next(
-        res.status(200).json({
-            status : "OK",
-            message : "Experience Successfully Added!"
-        })
-    )
+        return next(
+            res.status(200).json({
+                status : "OK",
+                message : "Experience Successfully Added!"
+            })
+        )
+    } catch (error) {
+        return next(
+            res.status(400).json({
+                message : error
+            })
+        )
+    }
+
+    
 }
 
 // Function to get One Experience from the Database

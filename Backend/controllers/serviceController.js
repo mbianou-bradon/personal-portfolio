@@ -4,11 +4,20 @@ const Service = require("../model/serviceModel");
 // Funtion to get all Services from the database
 async function getAllServices(req, res, next){
 
-    const services = await Service.find({}).sort({ createdAt: -1 })
+    try {
+        const services = await Service.find({}).sort({ createdAt: -1 })
 
-    return next(
-        res.status(200).json(services)
-    )
+        return next(
+            res.status(200).json(services)
+        )
+    } catch (error) {
+        return next(
+            res.status(400).json({
+                message : error
+            })
+        )
+    }
+    
 }
 
 // Function to create a Document to the Database (Add document)
