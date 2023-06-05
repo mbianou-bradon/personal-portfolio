@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import "./contact.css";
-import emailjs from 'emailjs-com'
+import emailjs from '@emailjs/browser'
 import { FiMail } from "react-icons/fi";
 import { RiWhatsappLine } from "react-icons/ri";
 import { BsLinkedin } from 'react-icons/bs';
@@ -8,13 +8,13 @@ import { BsLinkedin } from 'react-icons/bs';
 const Contact = () => {
     const form = useRef();
 
-    const sendEmail = (e) =>{
-        e.prevenDefault();
+    const sendEmail = (event) =>{
+        event.preventDefault();
 
-        emailjs.sendForm('service_pcnhplk', 'template_7q6ur06', form.current, 'UXXzSMQFtt_pon6aw')
-        e.target.reset()
+        emailjs.sendForm('service_pcnhplk', 'template_7q6ur06', form.current, 'MvUKGNmjr7pKPzoKT')
         .then((result)=>{
             console.log(result.text)
+            event.target.reset()
         })
         .catch((error)=>{
             console.log(error)

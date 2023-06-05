@@ -6,6 +6,7 @@ Department: `Computer Engineering`
 
 # About the Project
 This project was to design and implement a personal portfolio web page that showcases individual strengths and work. 
+**(Video Preview available at the bottom of the README.md)**
 
 It consists of 9 sections, 
 
@@ -35,3 +36,13 @@ This is how you can reach and contact me, either for Business, collaborations or
 ## Footer
 
 Contains short link to the different section of the web page
+
+# Video Preview
+
+
+https://github.com/mbianou-bradon/personal-portfolio/assets/72765949/b68ff9e1-0974-4d36-bb5e-c5433b09db8c
+
+
+
+
+
